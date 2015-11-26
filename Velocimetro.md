@@ -1,0 +1,60 @@
+# Tarea-S4
+//: Velocimetro
+
+import UIKit
+
+enum Velocidades : Int
+{
+    case Apagado = 0, VelocidadBaja = 20, VelocidadMedia = 50, VelocidadAlta = 120
+    
+    init( velocidadInicial : Velocidades)
+    {
+        self = velocidadInicial
+        
+    }
+}
+
+
+class Auto
+{
+    var velocidad : Velocidades
+    
+    init( vel : Velocidades  )
+    {
+        
+        self.velocidad = vel
+        
+        
+    }
+    
+    func cambioDeVelocidad() -> (actual: Int, velocidadEnCadena: String)
+    {
+        var tipo : String
+        
+        switch self.velocidad
+        {
+        case Velocidades.Apagado:
+            self.velocidad = .VelocidadBaja
+            tipo = "Velocidad Baja"
+        case Velocidades.VelocidadBaja:
+            self.velocidad = .VelocidadMedia
+            tipo = "Velocidad Media"
+        case Velocidades.VelocidadMedia:
+            self.velocidad = .VelocidadAlta
+            tipo = "Velocidad Alta"
+        case Velocidades.VelocidadAlta:
+            self.velocidad = .Apagado
+            tipo = "Apagado"
+        }
+        
+        return (self.velocidad.rawValue, tipo)
+       
+    }
+}
+
+var auto = Auto(vel: .Apagado)
+
+for v in 1...20
+{
+    print(auto.cambioDeVelocidad())
+}
